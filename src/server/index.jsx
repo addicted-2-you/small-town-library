@@ -1,36 +1,44 @@
-import http from 'http';
+import path from 'path';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import { readFile } from 'utils/server.utils';
+import express from 'express';
+import { graphqlHTTP } from 'express-graphql';
+
+import { schema } from '~/graphql-schema';
+
+import { readFile } from '~/utils/server.utils';
 
 import App from '../App';
 
-http
-  .createServer(async (req, resp) => {
-    resp.setHeader('Content-Type', 'text/html; charset=utf-8;');
+const app = express();
 
-    if (req.url.startsWith('/public')) {
-      try {
-        const file = await readFile(`./dist/${req.url}`, 'utf8');
-        resp.end(file);
-        return;
-      } catch (e) {
-        resp.end('<h1>404 not found</h1>');
-      }
-    }
+app.use(express.json());
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
-    switch (req.url) {
-      case '/': {
-        const client = ReactDOMServer.renderToString(<App />);
-        const template = await readFile('./dist/public/index.html', 'utf8');
-        resp.end(template.replace('<div id="root"></div>', `<div id="root">${client}</div>`));
-        break;
-      }
-      default: {
-        resp.end('<h1>404 not found</h1>');
-      }
-    }
-  })
-  .listen(process.env.SERVER_PORT);
+async function runApp() {
+  async function renderClientApp(req, resp) {
+    const client = ReactDOMServer.renderToString(<App />);
+    const template = await readFile('./dist/public/index.html', 'utf8');
+    resp.end(template.replace('<div id="root"></div>', `<div id="root">${client}</div>`));
+  }
+
+  app.get('/', renderClientApp);
+
+  app.use(
+    '/graphql',
+    graphqlHTTP({
+      schema,
+      graphiql: true,
+    }),
+  );
+
+  app.listen(process.env.SERVER_PORT, () => {
+    console.log(`listening on ${process.env.SERVER_PORT}`);
+  });
+}
+
+runApp().catch((err) => {
+  console.error(err);
+});

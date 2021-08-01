@@ -1,7 +1,17 @@
 import React from 'react';
 
+import { ApolloProvider } from '@apollo/client';
+
+import { client } from '~/graphql-client/config';
+
+import AdminPage from './pages/admin-page/AdminPage';
+
 function App() {
-  return <h1>App</h1>;
+  return (
+    <ApolloProvider client={client}>
+      <AdminPage />
+    </ApolloProvider>
+  );
 }
 
 export default App;

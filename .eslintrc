@@ -5,8 +5,11 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".jsx"],
-        "paths": ["./src"]
+        "extensions": [".js", ".ts", ".jsx"]
+      },
+
+      "webpack": {
+        "config": "webpack.config.shared.js"
       }
     }
   },

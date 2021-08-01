@@ -6,24 +6,8 @@
     "module": "commonjs",
     "jsx": "react",
     "paths": {
-      "components/*": ["./src/components/*"],
-      "constants/*": ["./src/constants/*"],
-      "models/*": ["./src/models/*"],
-      "server/*": ["./src/server/*"],
-      "styles/*": ["./src/styles/*"],
-      "utils/*": ["./src/utils/*"]
+      "~/*": ["src/*"]
     }
-
-    // TypeScript
-    // "experimentalDecorators": true,
-    // "useDefineForClassFields": true,
-    // "noImplicitAny": true,
-    // "noImplicitThis": true,
-    // "alwaysStrict": true,
-    // "strictNullChecks": true,
-    // "strictFunctionTypes": true,
-    // "strictPropertyInitialization": true,
-    // "emitDecoratorMetadata": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
