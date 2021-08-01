@@ -1,10 +1,23 @@
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
+const postcssPresetEnv = require('postcss-preset-env');
+const cssnano = require('cssnano');
+
 module.exports = {
   plugins: [
-    require('postcss-preset-env')({
+    tailwindcss('./tailwind.config.js'),
+
+    autoprefixer,
+
+    postcssPresetEnv({
       browsers: 'last 2 versions',
+      stage: 1,
+      features: {
+        'focus-within-pseudo-class': false,
+      },
     }),
 
-    require('cssnano')({
+    cssnano({
       preset: [
         'default',
         {
