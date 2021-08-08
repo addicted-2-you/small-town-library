@@ -7,6 +7,7 @@ export const GET_ALL_BOOKS = gql`
       name
       author_id
       publisher_id
+      publishing_date
     }
   }
 `;

@@ -1,6 +1,7 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
-import { GET_ALL_BOOKS } from '~/graphql-schema/queries/book-queries';
+import { GET_ALL_BOOKS } from './queries/book-queries';
+import { GET_AUTHORS } from './queries/author-queries';
 
 export const query = new GraphQLObjectType({
   name: 'RootQuery',
@@ -8,6 +9,9 @@ export const query = new GraphQLObjectType({
   fields: {
     // books
     getAllBooks: GET_ALL_BOOKS,
+
+    // authors
+    authors: GET_AUTHORS,
   },
 });
 

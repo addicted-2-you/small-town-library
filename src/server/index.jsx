@@ -2,11 +2,15 @@ import path from 'path';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 
+import { ApolloProvider } from '@apollo/client';
+
 import { schema } from '~/graphql-schema';
+import { client } from '~/graphql-client/config';
 
 import { readFile } from '~/utils/server.utils';
 
@@ -19,12 +23,18 @@ app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
 async function runApp() {
   async function renderClientApp(req, resp) {
-    const client = ReactDOMServer.renderToString(<App />);
-    const template = await readFile('./dist/public/index.html', 'utf8');
-    resp.end(template.replace('<div id="root"></div>', `<div id="root">${client}</div>`));
-  }
+    const context = {};
+    const clientApp = ReactDOMServer.renderToString(
+      <StaticRouter location={req.url} context={context}>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </StaticRouter>,
+    );
 
-  app.get('/', renderClientApp);
+    const template = await readFile('./dist/public/index.html', 'utf8');
+    resp.end(template.replace('<div id="root"></div>', `<div id="root">${clientApp}</div>`));
+  }
 
   app.use(
     '/graphql',
@@ -33,6 +43,8 @@ async function runApp() {
       graphiql: true,
     }),
   );
+
+  app.get('/*', renderClientApp);
 
   app.listen(process.env.SERVER_PORT, () => {
     console.log(`listening on ${process.env.SERVER_PORT}`);

@@ -1,16 +1,15 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import { ApolloProvider } from '@apollo/client';
-
-import { client } from '~/graphql-client/config';
-
-import AdminPage from './pages/admin-page/AdminPage';
+import routes from './pages/routes';
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <AdminPage />
-    </ApolloProvider>
+    <Switch>
+      {routes.map((route) => (
+        <Route key={route.id} path={route.path} component={route.component} />
+      ))}
+    </Switch>
   );
 }
 
