@@ -25,40 +25,48 @@ function AdminPage() {
   // }
 
   return (
-    <div className="h-screen flex">
-      <div className="p-2 bg-gray-700 text-gray-300 font-bold">
+    <div className="h-screen w-full flex">
+      <div className="p-2 w-1/6  bg-gray-700 text-gray-300 font-bold">
         <ul>
           <li>
-            <NavLink to={`${url}/books`}>Books</NavLink>
+            <NavLink activeClassName="text-white" to={`${url}/books`}>
+              Books
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/authors`}>Authors</NavLink>
+            <NavLink activeClassName="text-white" to={`${url}/authors`}>
+              Authors
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/publishing-houses`}>Publishing Houses</NavLink>
+            <NavLink activeClassName="text-white" to={`${url}/publishing-houses`}>
+              Publishing Houses
+            </NavLink>
           </li>
         </ul>
       </div>
 
-      <Switch>
-        <Route exact path={url}>
-          <NoDataSelected />
-        </Route>
+      <div className="flex-grow py-2 px-5">
+        <Switch>
+          <Route exact path={url}>
+            <NoDataSelected />
+          </Route>
 
-        <Route path={`${url}/books`}>
-          <BooksArea books={[]} />
-        </Route>
+          <Route path={`${url}/books`}>
+            <BooksArea books={[]} />
+          </Route>
 
-        <Route path={`${url}/authors/:authorId`}>
-          <AuthorArea />
-        </Route>
+          <Route path={`${url}/authors/:authorId`}>
+            <AuthorArea />
+          </Route>
 
-        <Route path={`${url}/authors`}>
-          <AuthorsArea />
-        </Route>
+          <Route path={`${url}/authors`}>
+            <AuthorsArea />
+          </Route>
 
-        <Redirect to={url} />
-      </Switch>
+          <Redirect to={url} />
+        </Switch>
+      </div>
     </div>
   );
 }

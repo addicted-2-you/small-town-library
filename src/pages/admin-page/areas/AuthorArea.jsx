@@ -23,10 +23,10 @@ function AuthorArea() {
   }
 
   return (
-    <div>
+    <>
       <strong>{authorId}</strong>
       <p>{JSON.stringify(authorData)}</p>
-    </div>
+    </>
   );
 }
 
