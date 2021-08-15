@@ -21,3 +21,16 @@ export const CREATE_AUTHOR = {
     });
   },
 };
+
+export const DELETE_AUTHOR = {
+  type: AuthorType,
+
+  args: {
+    authorId: { type: GraphQLString },
+  },
+
+  async resolve(parent, args) {
+    await myKnex('authors').where('id', args.authorId).delete();
+    return { id: args.authorId };
+  },
+};

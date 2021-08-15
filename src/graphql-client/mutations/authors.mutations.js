@@ -8,3 +8,11 @@ export const CREATE_AUTHOR = gql`
     }
   }
 `;
+
+export const DELETE_AUTHOR = gql`
+  mutation deleteAuthor($authorId: String) {
+    deleteAuthor(authorId: $authorId) {
+      id
+    }
+  }
+`;

@@ -1,9 +1,10 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { GET_AUTHORS } from '~/graphql-client/authors';
+import { DELETE_AUTHOR } from '~/graphql-client/mutations/authors.mutations';
 
 import Modal from '~/components/Modal';
 
@@ -14,11 +15,30 @@ import editIcon from '~/icons/edit.svg';
 import trashIcon from '~/icons/trash.svg';
 
 function AuthorsArea() {
-  const [isCreateAuthorModalVisible, setIsCreateAuthorModalVisible] = React.useState(true);
+  const [isCreateAuthorModalVisible, setIsCreateAuthorModalVisible] = React.useState(false);
+
+  const { loading, error, data: authorsData } = useQuery(GET_AUTHORS);
+
+  const [deleteAuthorMutation] = useMutation(DELETE_AUTHOR, {
+    update(proxy, { data: { deleteAuthor } }) {
+      const data = proxy.readQuery({
+        query: GET_AUTHORS,
+      });
+
+      proxy.writeQuery({
+        query: GET_AUTHORS,
+        data: {
+          authors: data.authors.filter((author) => author.id !== deleteAuthor.id),
+        },
+      });
+    },
+  });
 
   const closeCreateAuthorModal = React.useCallback(() => setIsCreateAuthorModalVisible(false), []);
 
-  const { loading, error, data: authorsData } = useQuery(GET_AUTHORS);
+  const deleteAuthorHandler = React.useCallback((authorId) => {
+    deleteAuthorMutation({ variables: { authorId } });
+  }, []);
 
   const { url } = useRouteMatch();
 
@@ -57,7 +77,11 @@ function AuthorsArea() {
                 <img width="18" height="18" src={editIcon} alt="edit" />
               </button>
 
-              <button type="button" className="p-1 rounded-md bg-red-200 hover:bg-red-300">
+              <button
+                type="button"
+                className="p-1 rounded-md bg-red-200 hover:bg-red-300"
+                onClick={() => deleteAuthorHandler(author.id)}
+              >
                 <img width="18" height="18" src={trashIcon} alt="delete" />
               </button>
             </span>
