@@ -6,10 +6,10 @@ import { useQuery } from '@apollo/client';
 import { GET_ALL_BOOKS } from '~/graphql-client/books';
 
 import BooksArea from './areas/BooksArea';
-import AuthorsArea from './areas/AuthorsArea';
+import AuthorsArea from './areas/authors/AuthorsArea';
 
 import NoDataSelected from './NoDataSelected';
-import AuthorArea from './areas/AuthorArea';
+import AuthorArea from './areas/authors/AuthorArea';
 
 function AdminPage() {
   // const { loading, error, data } = useQuery(GET_ALL_BOOKS);

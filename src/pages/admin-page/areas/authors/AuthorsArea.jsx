@@ -5,11 +5,19 @@ import { useQuery } from '@apollo/client';
 
 import { GET_AUTHORS } from '~/graphql-client/authors';
 
+import Modal from '~/components/Modal';
+
+import AuthorModal from './AuthorModal';
+
 import plusIcon from '~/icons/plus.svg';
 import editIcon from '~/icons/edit.svg';
 import trashIcon from '~/icons/trash.svg';
 
 function AuthorsArea() {
+  const [isCreateAuthorModalVisible, setIsCreateAuthorModalVisible] = React.useState(true);
+
+  const closeCreateAuthorModal = React.useCallback(() => setIsCreateAuthorModalVisible(false), []);
+
   const { loading, error, data: authorsData } = useQuery(GET_AUTHORS);
 
   const { url } = useRouteMatch();
@@ -26,7 +34,11 @@ function AuthorsArea() {
 
   return (
     <>
-      <button type="button" className="p-1 rounded-md bg-green-200 hover:bg-green-300">
+      <button
+        type="button"
+        className="p-1 rounded-md bg-green-200 hover:bg-green-300"
+        onClick={() => setIsCreateAuthorModalVisible(true)}
+      >
         <img width="18" height="18" src={plusIcon} alt="plus" />
       </button>
 
@@ -37,7 +49,7 @@ function AuthorsArea() {
             className="py-1 px-2 flex justify-between items-center rounded-md bg-gray-100 even:bg-gray-200"
           >
             <a href={`${url}/${author.id}`} className="hover:text-blue-500 hover:underline">
-              {`${author.name} ${author.patronum || ''} ${author.surname}`}
+              {`${author.name} ${author.patronum || ''} ${author.surname || ''}`}
             </a>
 
             <span className="space-x-2">
@@ -52,6 +64,11 @@ function AuthorsArea() {
           </li>
         ))}
       </ul>
+
+      {/* Create Author Modal */}
+      <Modal isVisible={isCreateAuthorModalVisible} close={closeCreateAuthorModal}>
+        <AuthorModal close={closeCreateAuthorModal} />
+      </Modal>
     </>
   );
 }
