@@ -5,6 +5,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import { graphqlHTTP } from 'express-graphql';
 
 import { ApolloProvider } from '@apollo/client';
@@ -19,6 +20,7 @@ import App from '../App';
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
 async function runApp() {

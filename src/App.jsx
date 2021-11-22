@@ -7,7 +7,7 @@ function App() {
   return (
     <Switch>
       {routes.map((route) => (
-        <Route key={route.id} path={route.path} component={route.component} />
+        <Route key={route.id} path={route.path} component={route.component} exact />
       ))}
     </Switch>
   );
