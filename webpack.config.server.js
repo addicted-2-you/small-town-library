@@ -14,6 +14,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
+    assetModuleFilename: 'images/[hash][ext][query]',
+    publicPath: '/public/',
   },
 
   module: {
@@ -28,7 +30,10 @@ module.exports = {
 
       { test: /\.(sc|sa|c)ss$/, use: ['ignore-loader'] },
 
-      { test: /\.(png|svg|jpg|jpeg|gif)$/i, use: ['ignore-loader'] },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
 
