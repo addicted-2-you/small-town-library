@@ -1,13 +1,17 @@
 import { gql } from '@apollo/client';
 
-export const GET_ALL_BOOKS = gql`
-  query {
-    getAllBooks {
+export const GET_ABSTRACT_BOOKS = gql`
+  query GetAbstractBooks {
+    getAbstractBooks {
       id
       name
-      author_id
-      publisher_id
-      publishing_date
+      description
+      author {
+        id
+        name
+        surname
+        patronum
+      }
     }
   }
 `;

@@ -1,14 +1,9 @@
 import React from 'react';
 import { NavLink, Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 
-import { useQuery } from '@apollo/client';
-
-import { GET_ALL_BOOKS } from '~/graphql-client/books';
-
-import BooksArea from './areas/BooksArea';
+import AbstractBooksArea from './areas/AbstractBooksArea';
 import AuthorsArea from './areas/authors/AuthorsArea';
 
-import NoDataSelected from './NoDataSelected';
 import AuthorArea from './areas/authors/AuthorArea';
 
 function AdminPage() {
@@ -25,35 +20,40 @@ function AdminPage() {
   // }
 
   return (
-    <div className="h-screen w-full flex">
-      <div className="p-2 w-1/6  bg-gray-700 text-gray-300 font-bold">
-        <ul>
-          <li>
-            <NavLink activeClassName="text-white" to={`${url}/books`}>
-              Books
-            </NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName="text-white" to={`${url}/authors`}>
-              Authors
-            </NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName="text-white" to={`${url}/publishing-houses`}>
-              Publishing Houses
-            </NavLink>
-          </li>
-        </ul>
-      </div>
+    <div className="w-full flex flex-col">
+      <ul className="mx-auto w-3/5 flex justify-between">
+        <li>
+          <NavLink
+            activeClassName="text-purple-500 font-semibold underlined"
+            to={`${url}/abstract-books`}
+          >
+            Абстрактные книги
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            activeClassName="text-purple-500  font-semibold underlined"
+            to={`${url}/physical-books`}
+          >
+            Физические книги
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            activeClassName="text-purple-500  font-semibold underlined"
+            to={`${url}/authors`}
+          >
+            Авторы
+          </NavLink>
+        </li>
+      </ul>
 
       <div className="flex-grow py-2 px-5">
         <Switch>
-          <Route exact path={url}>
-            <NoDataSelected />
-          </Route>
-
-          <Route path={`${url}/books`}>
-            <BooksArea books={[]} />
+          <Route path={`${url}/abstract-books`}>
+            <AbstractBooksArea />
           </Route>
 
           <Route path={`${url}/authors/:authorId`}>

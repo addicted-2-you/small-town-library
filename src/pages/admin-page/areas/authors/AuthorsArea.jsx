@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router-dom';
 
 import { useMutation, useQuery } from '@apollo/client';
 
+// graphql
 import { GET_AUTHORS } from '~/graphql-client/authors';
 import { DELETE_AUTHOR } from '~/graphql-client/mutations/authors.mutations';
 
@@ -10,6 +11,7 @@ import Modal from '~/components/Modal';
 
 import AuthorModal from './AuthorModal';
 
+// icons
 import plusIcon from '~/icons/plus.svg';
 import editIcon from '~/icons/edit.svg';
 import trashIcon from '~/icons/trash.svg';
@@ -50,7 +52,7 @@ function AuthorsArea() {
     return <p>Error {JSON.stringify(error)}</p>;
   }
 
-  const { authors } = authorsData;
+  const { getAuthors: authors } = authorsData;
 
   return (
     <>

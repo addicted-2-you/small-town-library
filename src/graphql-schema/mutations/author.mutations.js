@@ -2,7 +2,7 @@ import { GraphQLString } from 'graphql';
 
 import myKnex from '~/server/my-knex';
 
-import { AuthorType } from '../type-defs/Author';
+import { AuthorType } from '../type-defs/AuthorType';
 
 export const CREATE_AUTHOR = {
   type: AuthorType,
