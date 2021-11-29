@@ -6,12 +6,16 @@ import { ApolloProvider } from '@apollo/client';
 
 import { client } from '~/graphql-client/config';
 
+import ModalProvider from '~/components/modal/ModalProvider';
+
 import App from './App';
 
 ReactDOM.hydrate(
   <BrowserRouter>
     <ApolloProvider client={client}>
-      <App />
+      <ModalProvider container={document.getElementById('modals')}>
+        <App />
+      </ModalProvider>
     </ApolloProvider>
   </BrowserRouter>,
   document.getElementById('root'),

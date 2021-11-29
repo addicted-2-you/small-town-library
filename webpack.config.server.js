@@ -8,6 +8,7 @@ module.exports = {
   ...sharedConfig,
 
   target: 'node',
+  devtool: 'inline-source-map',
   entry: './src/server/index.jsx',
   externals: [nodeExternals()],
 
