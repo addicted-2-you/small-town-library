@@ -2,8 +2,11 @@ import { GraphQLString } from 'graphql';
 
 import myKnex from '~/server/my-knex';
 
+<<<<<<< HEAD
 import { formatAuthorsQueryResult } from '~/utils/author.utils';
 
+=======
+>>>>>>> afa37a92139a58704342e2a5c4aa6f2f93edcf42
 import { AuthorType } from '../type-defs/AuthorType';
 
 export const CREATE_AUTHOR = {
