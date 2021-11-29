@@ -3,14 +3,36 @@ import { useForm } from 'react-hook-form';
 
 // hooks
 import { useAuthorCreate } from '~/hooks/useAuthorCreate';
+import { useAuthorUpdate } from '~/hooks/useAuthorUpdate';
 
-function AuthorModal() {
-  const { register, handleSubmit } = useForm();
+function AuthorModal({ editedAuthor }) {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: editedAuthor ? editedAuthor.name : '',
+      patronum: editedAuthor ? editedAuthor.patronum : '',
+      surname: editedAuthor ? editedAuthor.surname : '',
+    },
+  });
 
   const createAuthorMutation = useAuthorCreate();
 
-  function onSubmit({ name, surname, patronum }) {
-    createAuthorMutation({ variables: { name, surname, patronum } });
+  const updateAuthorMutation = useAuthorUpdate();
+
+  function onSubmit(data) {
+    if (editedAuthor) {
+      updateAuthorMutation({
+        variables: {
+          authorId: editedAuthor.id,
+          name: data.name,
+          surname: data.surname,
+          patronum: data.patronum,
+        },
+      });
+    } else {
+      createAuthorMutation({
+        variables: { name: data.name, surname: data.surname, patronum: data.patronum },
+      });
+    }
   }
 
   return (

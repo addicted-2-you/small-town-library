@@ -6,7 +6,7 @@ import { GET_AUTHORS } from './queries/author-queries';
 
 // mutations
 import { AUTHORIZE } from './mutations/user.mutations';
-import { CREATE_AUTHOR, DELETE_AUTHOR } from './mutations/author.mutations';
+import { CREATE_AUTHOR, UPDATE_AUTHOR, DELETE_AUTHOR } from './mutations/author.mutations';
 
 export const query = new GraphQLObjectType({
   name: 'RootQuery',
@@ -30,6 +30,7 @@ export const mutation = new GraphQLObjectType({
 
     // authors
     createAuthor: CREATE_AUTHOR,
+    updateAuthor: UPDATE_AUTHOR,
     deleteAuthor: DELETE_AUTHOR,
   },
 });

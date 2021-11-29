@@ -11,6 +11,17 @@ export const CREATE_AUTHOR = gql`
   }
 `;
 
+export const UPDATE_AUTHOR = gql`
+  mutation UpdateAuthor($authorId: String!, $name: String, $surname: String, $patronum: String) {
+    updateAuthor(authorId: $authorId, name: $name, surname: $surname, patronum: $patronum) {
+      id
+      name
+      surname
+      patronum
+    }
+  }
+`;
+
 export const DELETE_AUTHOR = gql`
   mutation DeleteAuthor($authorId: String) {
     deleteAuthor(authorId: $authorId) {

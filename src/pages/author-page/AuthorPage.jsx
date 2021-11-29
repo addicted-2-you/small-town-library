@@ -8,6 +8,12 @@ import { GET_AUTHOR } from '~/graphql-client/authors';
 // hooks
 import { useAuthorDelete } from '~/hooks/useAuthorDelete';
 
+// components
+import { useModal } from '~/components/modal/useModal';
+
+// modals
+import AuthorModal from '~/modals/AuthorModal';
+
 // icons
 import editIcon from '~/icons/edit.svg';
 import trashIcon from '~/icons/trash.svg';
@@ -20,7 +26,17 @@ function AuthorPage() {
 
   const { loading, error, data } = useQuery(GET_AUTHOR, { variables: { id: authorId } });
 
+  const {
+    getAuthors: [authorData],
+  } = data || { getAuthors: [null] };
+
   const deleteAuthorMutation = useAuthorDelete();
+
+  const { showModal: showEditAuthorModal } = useModal({
+    ModalContent: () => <AuthorModal editedAuthor={authorData} />,
+    inputs: [authorData],
+    title: 'Редактировать автора',
+  });
 
   const deleteAuthorHandler = React.useCallback(async () => {
     // [QUESTION]: apollo-gql вынуждает меня писать логику в компоненте
@@ -36,10 +52,6 @@ function AuthorPage() {
   if (error) {
     return <p>Error {JSON.stringify(error)}</p>;
   }
-
-  const {
-    getAuthors: [authorData],
-  } = data;
 
   return (
     <>
@@ -57,6 +69,7 @@ function AuthorPage() {
           <button
             className="p-1 rounded-md cursor-pointer bg-yellow-200 hover:bg-yellow-300"
             type="button"
+            onClick={showEditAuthorModal}
           >
             <img width="18" height="18" src={editIcon} alt="create" />
           </button>
