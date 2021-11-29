@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
 // queries
-import { GET_ALL_BOOKS } from './queries/book-queries';
+import { GET_ABSTRACT_BOOKS, GET_PHYSICAL_BOOKS } from './queries/book-queries';
 import { GET_AUTHORS } from './queries/author-queries';
 
 // mutations
@@ -13,10 +13,11 @@ export const query = new GraphQLObjectType({
 
   fields: {
     // books
-    getAllBooks: GET_ALL_BOOKS,
+    getAbstractBooks: GET_ABSTRACT_BOOKS,
+    getPhysicalBooks: GET_PHYSICAL_BOOKS,
 
     // authors
-    authors: GET_AUTHORS,
+    getAuthors: GET_AUTHORS,
   },
 });
 
