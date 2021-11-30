@@ -18,6 +18,15 @@ create table small_town_library.abstract_books_tbl (
 ) default charset = 'utf8';
 
 insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(1, 'Вишнёвый сад');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(2, 'Преступление и наказание');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(3, 'Братья Карамазовы');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(4, 'Игрок');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(5, 'Записки из подполья');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(6, 'Бесы');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(7, 'Война и мир');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(8, 'Человек в футляре');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(9, 'Униженные и оскорбленные');
+insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(10, 'Записки из мертвого дома');
 
 drop table if exists small_town_library.m2m_abstract_books_authors_tbl;
 create table small_town_library.m2m_abstract_books_authors_tbl (

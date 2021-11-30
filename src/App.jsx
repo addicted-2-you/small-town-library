@@ -6,14 +6,15 @@ import routes from './pages/routes';
 // icons
 import adminIcon from '~/icons/admin.svg';
 import authorsIcon from '~/icons/pen-fancy-solid.svg';
+import booksIcon from '~/icons/book-solid.svg';
 
 function App() {
   return (
     <div className="p-8 h-screen overflow-hidden bg-purple-200">
       <div className="h-full flex bg-white rounded-xl">
-        <div className="py-5 px-3 w-1/6 bg-purple-500 rounded-l-xl">
+        <div className="py-5 px-3 w-1/12 bg-purple-500 rounded-l-xl">
           <ul className="flex flex-col items-center space-y-5">
-            <li className="h-14 w-14 bg-purple-200 hover:bg-purple-100">
+            {/* <li className="h-14 w-14 bg-purple-200 hover:bg-purple-100">
               <NavLink
                 className="h-full w-full flex justify-center items-center"
                 activeClassName="bg-white"
@@ -21,7 +22,7 @@ function App() {
               >
                 <img height="28" width="28" src={adminIcon} alt="admin" />
               </NavLink>
-            </li>
+            </li> */}
 
             <li className="h-14 w-14 bg-purple-200 hover:bg-purple-100">
               <NavLink
@@ -37,9 +38,9 @@ function App() {
               <NavLink
                 className="h-full w-full flex justify-center items-center"
                 activeClassName="bg-white"
-                to="/anime"
+                to="/books"
               >
-                <img height="28" width="28" src={adminIcon} alt="admin" />
+                <img height="28" width="28" src={booksIcon} alt="books" />
               </NavLink>
             </li>
           </ul>

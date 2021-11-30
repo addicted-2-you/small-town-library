@@ -1,8 +1,9 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
 // queries
-import { GET_ABSTRACT_BOOKS, GET_PHYSICAL_BOOKS } from './queries/book-queries';
-import { GET_AUTHORS } from './queries/author-queries';
+import { GET_ABSTRACT_BOOKS } from './queries/abstract-books.queries';
+import { GET_PHYSICAL_BOOKS } from './queries/physical-books.queries';
+import { GET_AUTHORS } from './queries/authors.queries';
 
 // mutations
 import { AUTHORIZE } from './mutations/user.mutations';
@@ -12,8 +13,10 @@ export const query = new GraphQLObjectType({
   name: 'RootQuery',
 
   fields: {
-    // books
+    // abstract books
     getAbstractBooks: GET_ABSTRACT_BOOKS,
+
+    // physical books
     getPhysicalBooks: GET_PHYSICAL_BOOKS,
 
     // authors

@@ -9,6 +9,7 @@ import AuthPage from './auth-page/AuthPage';
 import AdminPage from './admin-page/AdminPage';
 import AuthorsPage from './authors-page/AuthorsPage';
 import AuthorPage from './author-page/AuthorPage';
+import BooksPage from './books-page/BooksPage';
 
 export default [
   { id: '0', path: '/', component: MainPage, exact: true },
@@ -46,5 +47,12 @@ export default [
         <AuthorPage />
       </PageWrapper>
     ),
+  },
+
+  {
+    id: '4',
+    path: '/books',
+    exact: true,
+    component: () => <BooksPage />,
   },
 ];
