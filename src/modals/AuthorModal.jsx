@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 // hooks
-import { useAuthorCreate } from '~/hooks/useAuthorCreate';
-import { useAuthorUpdate } from '~/hooks/useAuthorUpdate';
+import { useAuthorCreate } from '~/hooks/authors/useAuthorCreate';
+import { useAuthorUpdate } from '~/hooks/authors/useAuthorUpdate';
 
 function AuthorModal({ editedAuthor }) {
   const { register, handleSubmit } = useForm({

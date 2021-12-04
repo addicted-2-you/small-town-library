@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 import { GET_AUTHORS } from '~/graphql-client/authors';
 
 // hooks
-import { useAuthorDelete } from '~/hooks/useAuthorDelete';
+import { useAuthorDelete } from '~/hooks/authors/useAuthorDelete';
 import { useModal } from '~/components/modal/useModal';
 
 // modals
@@ -24,7 +24,7 @@ function AuthorsPage() {
 
   const { url } = useRouteMatch();
 
-  const { showModal: showCreateAuthorModal, hideModal: hideCreateAuthorModal } = useModal({
+  const { showModal: showCreateAuthorModal } = useModal({
     ModalContent: AuthorModal,
     inputs: [],
     title: 'Добавить автора',

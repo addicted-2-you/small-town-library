@@ -4,6 +4,9 @@ import { useQuery } from '@apollo/client';
 // gql
 import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.queries';
 
+// hooks
+import { useAbstractBookDelete } from '~/hooks/abstract-books/useAbstractBookDelete';
+
 // icons
 import plusIcon from '~/icons/plus.svg';
 import editIcon from '~/icons/edit.svg';
@@ -11,6 +14,12 @@ import trashIcon from '~/icons/trash.svg';
 
 function AbstractBooksArea({ searchQuery }) {
   const { loading, error, data } = useQuery(GET_ABSTRACT_BOOKS, { variables: { searchQuery } });
+
+  const deleteAbstractBookMutation = useAbstractBookDelete();
+
+  function deleteAbstractBookHandler(bookId) {
+    deleteAbstractBookMutation({ variables: { bookId } });
+  }
 
   if (loading) {
     return <p>Loading...</p>;
@@ -52,7 +61,11 @@ function AbstractBooksArea({ searchQuery }) {
                 <img width="18" height="18" src={editIcon} alt="edit" />
               </button>
 
-              <button type="button" className="p-1 rounded-md bg-red-200 hover:bg-red-300">
+              <button
+                type="button"
+                className="p-1 rounded-md bg-red-200 hover:bg-red-300"
+                onClick={() => deleteAbstractBookHandler(book.id)}
+              >
                 <img width="18" height="18" src={trashIcon} alt="delete" />
               </button>
             </span>

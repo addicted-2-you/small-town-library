@@ -6,9 +6,7 @@ import { useQuery } from '@apollo/client';
 import { GET_AUTHOR } from '~/graphql-client/authors';
 
 // hooks
-import { useAuthorDelete } from '~/hooks/useAuthorDelete';
-
-// components
+import { useAuthorDelete } from '~/hooks/authors/useAuthorDelete';
 import { useModal } from '~/components/modal/useModal';
 
 // modals

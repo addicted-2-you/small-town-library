@@ -2,12 +2,13 @@ import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
 // queries
 import { GET_ABSTRACT_BOOKS } from './queries/abstract-books.queries';
-import { GET_PHYSICAL_BOOKS } from './queries/physical-books.queries';
 import { GET_AUTHORS } from './queries/authors.queries';
+import { GET_PHYSICAL_BOOKS } from './queries/physical-books.queries';
 
 // mutations
-import { AUTHORIZE } from './mutations/user.mutations';
-import { CREATE_AUTHOR, UPDATE_AUTHOR, DELETE_AUTHOR } from './mutations/author.mutations';
+import { DELETE_ABSTRACT_BOOK } from './mutations/abstract-books.mutations';
+import { CREATE_AUTHOR, UPDATE_AUTHOR, DELETE_AUTHOR } from './mutations/authors.mutations';
+import { AUTHORIZE } from './mutations/users.mutations';
 
 export const query = new GraphQLObjectType({
   name: 'RootQuery',
@@ -16,11 +17,11 @@ export const query = new GraphQLObjectType({
     // abstract books
     getAbstractBooks: GET_ABSTRACT_BOOKS,
 
-    // physical books
-    getPhysicalBooks: GET_PHYSICAL_BOOKS,
-
     // authors
     getAuthors: GET_AUTHORS,
+
+    // physical books
+    getPhysicalBooks: GET_PHYSICAL_BOOKS,
   },
 });
 
@@ -28,13 +29,16 @@ export const mutation = new GraphQLObjectType({
   name: 'RootMutation',
 
   fields: {
-    // users
-    authorize: AUTHORIZE,
+    // abstract books
+    deleteAbstractBook: DELETE_ABSTRACT_BOOK,
 
     // authors
     createAuthor: CREATE_AUTHOR,
     updateAuthor: UPDATE_AUTHOR,
     deleteAuthor: DELETE_AUTHOR,
+
+    // users
+    authorize: AUTHORIZE,
   },
 });
 
