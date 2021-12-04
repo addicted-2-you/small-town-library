@@ -12,20 +12,26 @@ export const GET_ABSTRACT_BOOKS = {
   type: new GraphQLList(AbstractBookType),
 
   args: {
+    bookId: { type: GraphQLString },
     searchQuery: { type: GraphQLString },
   },
 
   async resolve(parent, args) {
-    const { searchQuery = '' } = args;
+    const { bookId, searchQuery = '' } = args;
 
-    const books = await myKnex
-      .select('*')
-      .from('abstract_books_tbl')
-      .where((builder) => {
-        builder
-          .where('ab_name', 'like', `%${searchQuery}%`)
-          .orWhere('ab_description', 'like', `%${searchQuery}%`);
-      });
+    let books = [];
+    if (bookId) {
+      books = await myKnex.select('*').from('abstract_books_tbl').where('ab_id', '=', bookId);
+    } else {
+      books = await myKnex
+        .select('*')
+        .from('abstract_books_tbl')
+        .where((builder) => {
+          builder
+            .where('ab_name', 'like', `%${searchQuery}%`)
+            .orWhere('ab_description', 'like', `%${searchQuery}%`);
+        });
+    }
 
     return books.map(formatAbstractBooksResult);
   },

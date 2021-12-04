@@ -1,12 +1,8 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 // gql
 import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.queries';
-
-// utils
-import { sanitizeUrl } from '~/utils/string.utils';
 
 // icons
 import plusIcon from '~/icons/plus.svg';
@@ -15,10 +11,6 @@ import trashIcon from '~/icons/trash.svg';
 
 function AbstractBooksArea({ searchQuery }) {
   const { loading, error, data } = useQuery(GET_ABSTRACT_BOOKS, { variables: { searchQuery } });
-
-  const { url } = useRouteMatch();
-
-  const sanitizedUrl = React.useMemo(() => sanitizeUrl(url), [url]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -48,7 +40,7 @@ function AbstractBooksArea({ searchQuery }) {
           >
             <span className="space-x-5">
               <a
-                href={`${sanitizedUrl}/${book.id}`}
+                href={`/abstract-books/${book.id}`}
                 className="hover:text-blue-500 hover:underline"
               >
                 {book.name}

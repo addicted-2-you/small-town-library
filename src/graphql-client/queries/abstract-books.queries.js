@@ -9,3 +9,19 @@ export const GET_ABSTRACT_BOOKS = gql`
     }
   }
 `;
+
+export const GET_ABSTRACT_BOOK = gql`
+  query GetAbstractBook($bookId: String) {
+    getAbstractBooks(bookId: $bookId) {
+      id
+      name
+      description
+      authors {
+        id
+        name
+        surname
+        patronum
+      }
+    }
+  }
+`;
