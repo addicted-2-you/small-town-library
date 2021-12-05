@@ -15,8 +15,6 @@ export const AbstractBookType = new GraphQLObjectType({
 
     name: { type: GraphQLString },
 
-    description: { type: GraphQLString },
-
     authors: {
       type: GraphQLList(AuthorType),
 

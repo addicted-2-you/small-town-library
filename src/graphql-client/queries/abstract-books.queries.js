@@ -5,7 +5,6 @@ export const GET_ALL_ABSTRACT_BOOKS = gql`
     getAbstractBooks {
       id
       name
-      description
     }
   }
 `;
@@ -15,7 +14,6 @@ export const GET_ABSTRACT_BOOKS = gql`
     getAbstractBooks(searchQuery: $searchQuery) {
       id
       name
-      description
     }
   }
 `;
@@ -25,7 +23,6 @@ export const GET_ABSTRACT_BOOK = gql`
     getAbstractBooks(bookId: $bookId) {
       id
       name
-      description
       authors {
         id
         name

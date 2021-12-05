@@ -13,8 +13,7 @@ insert into small_town_library.authors_tbl(a_id, a_name, a_patronum, a_surname) 
 drop table if exists small_town_library.abstract_books_tbl;
 create table small_town_library.abstract_books_tbl (
   ab_id int primary key auto_increment,
-  ab_name varchar(255) not null,
-  ab_description varchar(255) default ''
+  ab_name varchar(255) not null
 ) default charset = 'utf8';
 
 insert into small_town_library.abstract_books_tbl(ab_id, ab_name) values(1, 'Вишнёвый сад');
@@ -44,7 +43,6 @@ drop table if exists small_town_library.physical_books_tbl;
 create table small_town_library.physical_books_tbl (
   pb_id int primary key auto_increment,
   pb_name varchar(255) not null,
-  pb_description varchar(255) default '',
   pb_publishingdate date default '1991-01-01'
 ) default charset = 'utf8';
 

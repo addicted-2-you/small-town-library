@@ -6,7 +6,7 @@ import myKnex from '~/server/my-knex';
 import { AbstractBookType } from '~/graphql-schema/type-defs/AbstractBookType';
 
 // utils
-import { formatAbstractBooksResult } from '~/utils/books.utils';
+import { formatAbstractBooksResult } from '~/utils/abstract-books.utils';
 
 export const GET_ABSTRACT_BOOKS = {
   type: new GraphQLList(AbstractBookType),
@@ -27,9 +27,7 @@ export const GET_ABSTRACT_BOOKS = {
         .select('*')
         .from('abstract_books_tbl')
         .where((builder) => {
-          builder
-            .where('ab_name', 'like', `%${searchQuery}%`)
-            .orWhere('ab_description', 'like', `%${searchQuery}%`);
+          builder.where('ab_name', 'like', `%${searchQuery}%`);
         });
     }
 

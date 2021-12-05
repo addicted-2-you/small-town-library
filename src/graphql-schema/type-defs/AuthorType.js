@@ -3,7 +3,7 @@ import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
 import myKnex from '~/server/my-knex';
 
 // utils
-import { formatAbstractBooksResult } from '~/utils/books.utils';
+import { formatAbstractBooksResult } from '~/utils/abstract-books.utils';
 
 import { AbstractBookType } from './AbstractBookType';
 

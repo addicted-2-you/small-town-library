@@ -6,6 +6,10 @@ import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.quer
 
 // hooks
 import { useAbstractBookDelete } from '~/hooks/abstract-books/useAbstractBookDelete';
+import { useModal } from '~/components/modal/useModal';
+
+// modals
+import AbstractBookModal from '~/modals/AbstractBookModal';
 
 // icons
 import plusIcon from '~/icons/plus.svg';
@@ -14,6 +18,12 @@ import trashIcon from '~/icons/trash.svg';
 
 function AbstractBooksArea({ searchQuery }) {
   const { loading, error, data } = useQuery(GET_ABSTRACT_BOOKS, { variables: { searchQuery } });
+
+  const { showModal: showCreateBookModal } = useModal({
+    ModalContent: AbstractBookModal,
+    inputs: [],
+    title: 'Добавить книгу',
+  });
 
   const deleteAbstractBookMutation = useAbstractBookDelete();
 
@@ -36,7 +46,11 @@ function AbstractBooksArea({ searchQuery }) {
       <h3 className="text-md font-semibold">Абстрактные книги</h3>
 
       <div className="mt-3">
-        <button className="p-1 rounded-md bg-green-200 hover:bg-green-300" type="button">
+        <button
+          className="p-1 rounded-md bg-green-200 hover:bg-green-300"
+          type="button"
+          onClick={showCreateBookModal}
+        >
           <img width="18" height="18" src={plusIcon} alt="plus" />
         </button>
       </div>
@@ -57,7 +71,11 @@ function AbstractBooksArea({ searchQuery }) {
             </span>
 
             <span className="space-x-2">
-              <button type="button" className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300">
+              <button
+                type="button"
+                className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300"
+                onClick={showUpdateBookModal}
+              >
                 <img width="18" height="18" src={editIcon} alt="edit" />
               </button>
 
