@@ -56,7 +56,7 @@ create table small_town_library.m2m_abstract_books_physical_books_tbl (
 ) default charset = 'utf8';
 
 insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(1, 1);
-insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(2, 1);
-insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(3, 1);
-insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(4, 1);
-insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(5, 1);
+insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(1, 2);
+insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(1, 3);
+insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(1, 4);
+insert into small_town_library.m2m_abstract_books_physical_books_tbl(m2mabpb_abstractbookid, m2mabpb_physicalbookid) values(1, 5);
