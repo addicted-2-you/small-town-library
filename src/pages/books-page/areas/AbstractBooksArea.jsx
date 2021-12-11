@@ -71,11 +71,7 @@ function AbstractBooksArea({ searchQuery }) {
             </span>
 
             <span className="space-x-2">
-              <button
-                type="button"
-                className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300"
-                onClick={showUpdateBookModal}
-              >
+              <button type="button" className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300">
                 <img width="18" height="18" src={editIcon} alt="edit" />
               </button>
 
