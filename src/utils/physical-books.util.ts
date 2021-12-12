@@ -11,7 +11,7 @@ import { transformDateToMysqlDateString } from './time.utils';
 export const formatPhysicalBookRaw = (physicalBookRaw: IPhysicalBookRaw): IPhysicalBook => ({
   id: physicalBookRaw.pb_id,
   name: physicalBookRaw.pb_name,
-  publishingDate: `${physicalBookRaw.pb_publishingdate.getDate()}`,
+  publishingDate: `${transformDateToMysqlDateString(physicalBookRaw.pb_publishingdate)}`,
 });
 
 export const formatGroupedPhysicalBookRaw = (

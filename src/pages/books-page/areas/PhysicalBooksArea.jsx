@@ -4,17 +4,24 @@ import { useQuery } from '@apollo/client';
 // gql
 import { GET_GROUPED_PHYSICAL_BOOKS } from '~/graphql-client/queries/physical-books.queries';
 
+// components
+import { PlusButton } from '~/components/icon-buttons';
+import { useModal } from '~/components/modal/useModal';
+
+// modals
+import PhysicalBookModal from '~/modals/PhysicalBookModal';
+
 import GroupedPhysicalBooksItem from '../widgets/GroupedPhysicalBooksItem';
-
-// utils
-import { getLocaleStringDate } from '~/utils/time.utils';
-
-// icons
-import plusIcon from '~/icons/plus.svg';
 
 function PhysicalBooksArea({ searchQuery }) {
   const { loading, error, data } = useQuery(GET_GROUPED_PHYSICAL_BOOKS, {
     variables: { searchQuery },
+  });
+
+  const { showModal: showCreateBookModal } = useModal({
+    ModalContent: () => <PhysicalBookModal searchQuery={searchQuery} />,
+    inputs: [],
+    title: 'Добавить книгу',
   });
 
   if (loading) {
@@ -32,9 +39,7 @@ function PhysicalBooksArea({ searchQuery }) {
       <h3 className="text-md font-semibold text-right">Бумажные книги</h3>
 
       <div className="mt-3 flex justify-end">
-        <button className="p-1 rounded-md bg-green-200 hover:bg-green-300" type="button">
-          <img width="18" height="18" src={plusIcon} alt="plus" />
-        </button>
+        <PlusButton onClick={showCreateBookModal} />
       </div>
 
       <ul className="mt-1 space-y-2">

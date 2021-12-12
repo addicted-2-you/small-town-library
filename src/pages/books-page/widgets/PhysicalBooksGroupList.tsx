@@ -35,7 +35,7 @@ function PhysicalBooksGroupList(props: IPhysicalBooksGroupListProps) {
       <ul className="space-y-1">
         {physicalBooks.map((book) => (
           <li
-            className="py-1 px-2 flex justify-between bg-gray-200 bg-opacity-80 rounded-md even:bg-gray-300"
+            className="py-1 px-2 flex justify-between items-center text-sm bg-gray-200 bg-opacity-80 rounded-md even:bg-gray-300"
             key={book.id}
           >
             <a className="hover:text-blue-500 hover:underline" href={`/physical-books/${book.id}`}>

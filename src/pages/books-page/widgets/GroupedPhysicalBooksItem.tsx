@@ -14,7 +14,7 @@ interface IGroupedPhysicalBooksItemProps {
 function GroupedPhysicalBooksItem(props: IGroupedPhysicalBooksItemProps) {
   const { physicalBook } = props;
 
-  const [listOpened, setListOpened] = React.useState(true);
+  const [listOpened, setListOpened] = React.useState(false);
 
   return (
     <div>
@@ -36,7 +36,7 @@ function GroupedPhysicalBooksItem(props: IGroupedPhysicalBooksItemProps) {
             {physicalBook.name} - {physicalBook.publishingDate}
           </span>
 
-          <span>({physicalBook.count})</span>
+          <span className={`${listOpened ? 'opacity-40' : ''}`}>({physicalBook.count})</span>
         </span>
       </button>
 

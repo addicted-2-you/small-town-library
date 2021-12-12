@@ -1,6 +1,7 @@
 import { GraphQLString } from 'graphql';
 
 import myKnex from '~/server/my-knex';
+
 import { formatAbstractBooksResult } from '~/utils/abstract-books.utils';
 
 import { AbstractBookType } from '../type-defs/AbstractBookType';
