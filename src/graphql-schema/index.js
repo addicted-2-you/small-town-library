@@ -3,7 +3,11 @@ import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 // queries
 import { GET_ABSTRACT_BOOKS } from './queries/abstract-books.queries';
 import { GET_AUTHORS } from './queries/authors.queries';
-import { GET_PHYSICAL_BOOKS } from './queries/physical-books.queries';
+import {
+  GET_GROUPED_PHYSICAL_BOOKS,
+  GET_PHYSICAL_BOOKS,
+  GET_PHYSICAL_BOOKS_GROUP_LIST,
+} from './queries/physical-books.queries';
 
 // mutations
 import {
@@ -26,6 +30,8 @@ export const query = new GraphQLObjectType({
 
     // physical books
     getPhysicalBooks: GET_PHYSICAL_BOOKS,
+    getGroupedPhysicalBooks: GET_GROUPED_PHYSICAL_BOOKS,
+    getPhysicalBooksGroupList: GET_PHYSICAL_BOOKS_GROUP_LIST,
   },
 });
 
@@ -42,6 +48,8 @@ export const mutation = new GraphQLObjectType({
     createAuthor: CREATE_AUTHOR,
     updateAuthor: UPDATE_AUTHOR,
     deleteAuthor: DELETE_AUTHOR,
+
+    // physical books
 
     // users
     authorize: AUTHORIZE,

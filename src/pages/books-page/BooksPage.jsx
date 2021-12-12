@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDebounce } from 'use-debounce';
 
+// areas
 import AbstractBooksArea from './areas/AbstractBooksArea';
+import PhysicalBooksArea from './areas/PhysicalBooksArea';
 
 function BooksPage() {
   const [booksSearch, setBooksSearch] = React.useState('');
@@ -29,7 +31,9 @@ function BooksPage() {
           <AbstractBooksArea searchQuery={debouncedBooksSearch} />
         </div>
 
-        <div className="h-full w-1/2"></div>
+        <div className="h-full w-1/2">
+          <PhysicalBooksArea searchQuery={debouncedBooksSearch} />
+        </div>
       </div>
     </div>
   );

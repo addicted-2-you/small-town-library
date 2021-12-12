@@ -43,7 +43,7 @@ function AbstractBooksArea({ searchQuery }) {
 
   return (
     <div className="px-3 py-2">
-      <h3 className="text-md font-semibold">Абстрактные книги</h3>
+      <h3 className="text-md font-semibold ">Абстрактные книги</h3>
 
       <div className="mt-3">
         <button
@@ -63,15 +63,15 @@ function AbstractBooksArea({ searchQuery }) {
           >
             <span className="space-x-5">
               <a
-                href={`/abstract-books/${book.id}`}
                 className="hover:text-blue-500 hover:underline"
+                href={`/abstract-books/${book.id}`}
               >
                 {book.name}
               </a>
             </span>
 
             <span className="space-x-2">
-              <button type="button" className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300">
+              <button className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300" type="button">
                 <img width="18" height="18" src={editIcon} alt="edit" />
               </button>
 

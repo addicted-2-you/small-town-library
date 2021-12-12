@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLID, GraphQLString } from 'graphql';
+import { GraphQLID, GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
 
 export const PhysicalBookType = new GraphQLObjectType({
   name: 'PhysicalBook',
@@ -6,7 +6,17 @@ export const PhysicalBookType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    description: { type: GraphQLString },
-    publishing_date: { type: GraphQLString },
+    publishingDate: { type: GraphQLString },
+  }),
+});
+
+export const GroupedPhysicalBookType = new GraphQLObjectType({
+  name: 'GroupedPhysicalBook',
+
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    publishingDate: { type: GraphQLString },
+    count: { type: GraphQLInt },
   }),
 });
