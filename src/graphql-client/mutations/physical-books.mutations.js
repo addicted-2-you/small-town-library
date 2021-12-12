@@ -9,3 +9,11 @@ export const CREATE_PHYSICAL_BOOK = gql`
     }
   }
 `;
+
+export const DELETE_PHYSICAL_BOOK = gql`
+  mutation DeletePhysicalBook($bookId: String!) {
+    deletePhysicalBook(bookId: $bookId) {
+      id
+    }
+  }
+`;

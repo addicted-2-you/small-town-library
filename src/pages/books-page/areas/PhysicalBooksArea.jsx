@@ -45,7 +45,7 @@ function PhysicalBooksArea({ searchQuery }) {
       <ul className="mt-1 space-y-2">
         {physicalBooks.map((book) => (
           <li key={book.id} className="items-center rounded-md bg-gray-100 even:bg-gray-200">
-            <GroupedPhysicalBooksItem physicalBook={book} />
+            <GroupedPhysicalBooksItem searchQuery={searchQuery} physicalBook={book} />
           </li>
         ))}
       </ul>

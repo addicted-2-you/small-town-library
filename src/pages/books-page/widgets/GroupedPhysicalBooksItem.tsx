@@ -12,7 +12,7 @@ interface IGroupedPhysicalBooksItemProps {
 }
 
 function GroupedPhysicalBooksItem(props: IGroupedPhysicalBooksItemProps) {
-  const { physicalBook } = props;
+  const { physicalBook, searchQuery } = props;
 
   const [listOpened, setListOpened] = React.useState(false);
 
@@ -42,6 +42,7 @@ function GroupedPhysicalBooksItem(props: IGroupedPhysicalBooksItemProps) {
 
       {listOpened ? (
         <PhysicalBooksGroupList
+          searchQuery={searchQuery}
           name={physicalBook.name}
           publishingDate={physicalBook.publishingDate}
         />

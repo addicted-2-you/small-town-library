@@ -24,3 +24,17 @@ export const CREATE_PHYSICAL_BOOK = {
     return formatPhysicalBookRaw(result);
   },
 };
+
+export const DELETE_PHYSICAL_BOOK = {
+  type: PhysicalBookType,
+
+  args: {
+    bookId: { type: GraphQLString },
+  },
+
+  async resolve(parent, args) {
+    const deletedBook = await myKnex('physical_books_tbl').where('pb_id', args.bookId).first();
+    await myKnex('physical_books_tbl').where('pb_id', args.bookId).delete();
+    return formatPhysicalBookRaw(deletedBook);
+  },
+};

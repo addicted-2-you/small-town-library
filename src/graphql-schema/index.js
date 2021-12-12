@@ -16,7 +16,7 @@ import {
   UPDATE_ABSTRACT_BOOK,
 } from './mutations/abstract-books.mutations';
 import { CREATE_AUTHOR, UPDATE_AUTHOR, DELETE_AUTHOR } from './mutations/authors.mutations';
-import { CREATE_PHYSICAL_BOOK } from './mutations/physical-books.mutations';
+import { CREATE_PHYSICAL_BOOK, DELETE_PHYSICAL_BOOK } from './mutations/physical-books.mutations';
 import { AUTHORIZE } from './mutations/users.mutations';
 
 export const query = new GraphQLObjectType({
@@ -52,6 +52,7 @@ export const mutation = new GraphQLObjectType({
 
     // physical books
     createPhysicalBook: CREATE_PHYSICAL_BOOK,
+    deletePhysicalBook: DELETE_PHYSICAL_BOOK,
 
     // users
     authorize: AUTHORIZE,

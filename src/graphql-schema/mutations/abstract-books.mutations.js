@@ -50,6 +50,7 @@ export const DELETE_ABSTRACT_BOOK = {
   },
 
   async resolve(parent, args) {
+    // TODO: return type is not AbstractBookType
     await myKnex('abstract_books_tbl').where('ab_id', args.bookId).delete();
     return { id: args.bookId };
   },

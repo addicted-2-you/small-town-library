@@ -7,6 +7,7 @@ import { GET_PHYSICAL_BOOKS_GROUP_LIST } from '~/graphql-client/queries/physical
 import { IPhysicalBook } from '~/models/physical-book.model';
 
 import { EditButton, TrashButton } from '~/components/icon-buttons';
+import { usePhysicalBookDelete } from '~/hooks/physical-books/usePhysicalBookDelete';
 
 interface IPhysicalBooksGroupListProps {
   name: string;
@@ -14,11 +15,13 @@ interface IPhysicalBooksGroupListProps {
 }
 
 function PhysicalBooksGroupList(props: IPhysicalBooksGroupListProps) {
-  const { name, publishingDate } = props;
+  const { name, publishingDate, searchQuery } = props;
 
   const { loading, error, data } = useQuery(GET_PHYSICAL_BOOKS_GROUP_LIST, {
     variables: { name, publishingDate },
   });
+
+  const deletePhysicalBookMutation = usePhysicalBookDelete({ name, publishingDate, searchQuery });
 
   if (loading) {
     return <p>Loading...</p>;
@@ -26,6 +29,10 @@ function PhysicalBooksGroupList(props: IPhysicalBooksGroupListProps) {
 
   if (error) {
     return <p>Error {JSON.stringify(error)}</p>;
+  }
+
+  function deletePhysicalBook(bookId) {
+    deletePhysicalBookMutation({ variables: { bookId } });
   }
 
   const physicalBooks: IPhysicalBook[] = data.getPhysicalBooksGroupList;
@@ -45,7 +52,7 @@ function PhysicalBooksGroupList(props: IPhysicalBooksGroupListProps) {
             <span className="space-x-2">
               <EditButton onClick={() => {}} />
 
-              <TrashButton onClick={() => {}} />
+              <TrashButton onClick={() => deletePhysicalBook(book.id)} />
             </span>
           </li>
         ))}
