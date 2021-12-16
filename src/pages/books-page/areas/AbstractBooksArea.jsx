@@ -8,13 +8,11 @@ import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.quer
 import { useAbstractBookDelete } from '~/hooks/abstract-books/useAbstractBookDelete';
 import { useModal } from '~/components/modal/useModal';
 
+// components
+import { PlusButton, EditButton, TrashButton } from '~/components/icon-buttons';
+
 // modals
 import AbstractBookModal from '~/modals/AbstractBookModal';
-
-// icons
-import plusIcon from '~/icons/plus.svg';
-import editIcon from '~/icons/edit.svg';
-import trashIcon from '~/icons/trash.svg';
 
 function AbstractBooksArea({ searchQuery }) {
   const { loading, error, data } = useQuery(GET_ABSTRACT_BOOKS, { variables: { searchQuery } });
@@ -25,7 +23,7 @@ function AbstractBooksArea({ searchQuery }) {
     title: 'Добавить книгу',
   });
 
-  const deleteAbstractBookMutation = useAbstractBookDelete();
+  const deleteAbstractBookMutation = useAbstractBookDelete(searchQuery);
 
   function deleteAbstractBookHandler(bookId) {
     deleteAbstractBookMutation({ variables: { bookId } });
@@ -46,13 +44,7 @@ function AbstractBooksArea({ searchQuery }) {
       <h3 className="text-md font-semibold ">Абстрактные книги</h3>
 
       <div className="mt-3">
-        <button
-          className="p-1 rounded-md bg-green-200 hover:bg-green-300"
-          type="button"
-          onClick={showCreateBookModal}
-        >
-          <img width="18" height="18" src={plusIcon} alt="plus" />
-        </button>
+        <PlusButton onClick={showCreateBookModal} />
       </div>
 
       <ul className="mt-1 space-y-2">
@@ -71,17 +63,9 @@ function AbstractBooksArea({ searchQuery }) {
             </span>
 
             <span className="space-x-2">
-              <button className="p-1 rounded-md bg-yellow-200 hover:bg-yellow-300" type="button">
-                <img width="18" height="18" src={editIcon} alt="edit" />
-              </button>
+              <EditButton />
 
-              <button
-                type="button"
-                className="p-1 rounded-md bg-red-200 hover:bg-red-300"
-                onClick={() => deleteAbstractBookHandler(book.id)}
-              >
-                <img width="18" height="18" src={trashIcon} alt="delete" />
-              </button>
+              <TrashButton onClick={() => deleteAbstractBookHandler(book.id)} />
             </span>
           </li>
         ))}

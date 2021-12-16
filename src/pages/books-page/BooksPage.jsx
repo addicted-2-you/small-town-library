@@ -15,7 +15,7 @@ function BooksPage() {
   }
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full overflow-hidden flex flex-col">
       <div className="py-2 flex justify-center">
         <input
           className="w-2/3 px-2 py-1 text-base border-b-2 border-gray-300 focus:outline-none focus:border-gray-400"
@@ -27,7 +27,7 @@ function BooksPage() {
       </div>
 
       <div className="h-full flex flex-grow">
-        <div className="h-full w-1/2 bg-gray-50">
+        <div className="h-full w-1/2 overflow-y-auto bg-gray-50">
           <AbstractBooksArea searchQuery={debouncedBooksSearch} />
         </div>
 
