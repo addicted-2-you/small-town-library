@@ -41,6 +41,7 @@ export const UPDATE_AUTHOR = {
     const resultId = await myKnex('authors_tbl')
       .where('a_id', args.authorId)
       .update({ ...{ a_name: args.name, a_surname: args.surname, a_patronum: args.patronum } });
+
     const result = await myKnex('authors_tbl').where('a_id', resultId).first();
     return formatAuthorsQueryResult(result);
   },

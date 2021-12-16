@@ -12,6 +12,8 @@ import trashIcon from '~/icons/trash.svg';
 function AbstractBooksArea() {
   const { loading, error, data } = useQuery(GET_ABSTRACT_BOOKS);
 
+  // [QUESTION]: в каждом компоненте, которому нужно подтянуть данные
+  // я дублирую этот кусок кода
   if (loading) {
     return <p>Loading...</p>;
   }

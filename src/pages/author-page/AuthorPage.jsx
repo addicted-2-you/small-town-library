@@ -6,9 +6,7 @@ import { useQuery } from '@apollo/client';
 import { GET_AUTHOR } from '~/graphql-client/authors';
 
 // hooks
-import { useAuthorDelete } from '~/hooks/useAuthorDelete';
-
-// components
+import { useAuthorDelete } from '~/hooks/authors/useAuthorDelete';
 import { useModal } from '~/components/modal/useModal';
 
 // modals
@@ -94,7 +92,14 @@ function AuthorPage() {
 
           <ul className="p-4 bg-gray-200 rounded-xl">
             {authorData.books.map((book) => (
-              <li key={book.id}>{book.name}</li>
+              <li key={book.id}>
+                <NavLink
+                  className="text-blue-500 cursor-pointer hover:underline"
+                  to={`/abstract-books/${book.id}`}
+                >
+                  {book.name}
+                </NavLink>
+              </li>
             ))}
           </ul>
         </>

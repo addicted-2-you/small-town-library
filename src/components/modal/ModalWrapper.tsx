@@ -22,7 +22,7 @@ function ModalWrapper({ children: modalContent, title, hide }: IModalWrapperProp
 
   return (
     // TODO: Move shared stuff to the component
-    <div className="modal-black-overlay absolute left-0 top-0 h-full w-full flex justify-center items-center bg-black opacity-70">
+    <div className="modal-black-overlay absolute left-0 top-0 h-full w-full flex justify-center items-center bg-black bg-opacity-70">
       <div className="p-5 bg-gray-50 rounded-xl">
         <header className="flex justify-between">
           <strong>{title}</strong>

@@ -17,10 +17,15 @@ interface IUseModalParams {
 
 export function useModal({ ModalContent, inputs = [], title = '' }: IUseModalParams) {
   const [isShown, setIsShown] = React.useState<boolean>(false);
+  const [modalProps, setModalProps] = React.useState<object>({ anime: 'anime' });
 
   const context = React.useContext(ModalContext);
 
-  const showModal = React.useCallback(() => setIsShown(true), []);
+  const showModal = React.useCallback((props) => {
+    setIsShown(true);
+    setModalProps(props);
+  }, []);
+
   const hideModal = React.useCallback(() => setIsShown(false), []);
 
   const key = React.useMemo(() => `${incremenator()}`, inputs);
@@ -28,10 +33,10 @@ export function useModal({ ModalContent, inputs = [], title = '' }: IUseModalPar
     () => () =>
       (
         <ModalWrapper title={title} hide={hideModal}>
-          <ModalContent />
+          <ModalContent {...modalProps} />
         </ModalWrapper>
       ),
-    inputs,
+    [...inputs, modalProps],
   );
 
   React.useEffect(() => {
