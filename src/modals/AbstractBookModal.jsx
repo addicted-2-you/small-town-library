@@ -5,16 +5,16 @@ import { useForm } from 'react-hook-form';
 import { useAbstractBookCreate } from '~/hooks/abstract-books/useAbstractBookCreate';
 import { useAbstractBookUpdate } from '~/hooks/abstract-books/useAbstractBookUpdate';
 
-function AbstractBookModal({ editedBook }) {
+function AbstractBookModal({ searchQuery, editedBook }) {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: editedBook ? editedBook.name : '',
     },
   });
 
-  const createAbstractBookMutation = useAbstractBookCreate();
+  const createAbstractBookMutation = useAbstractBookCreate(searchQuery);
 
-  const updateAbstractBookMutation = useAbstractBookUpdate();
+  const updateAbstractBookMutation = useAbstractBookUpdate(searchQuery);
 
   function onSubmit(data) {
     if (editedBook) {

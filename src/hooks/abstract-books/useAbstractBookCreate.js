@@ -4,15 +4,17 @@ import { useMutation } from '@apollo/client';
 import { CREATE_ABSTRACT_BOOK } from '~/graphql-client/mutations/abstract-books.mutations';
 import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.queries';
 
-export function useAbstractBookCreate() {
+export function useAbstractBookCreate(searchQuery) {
   const [createAbstractBookMutation] = useMutation(CREATE_ABSTRACT_BOOK, {
     update(proxy, { data: { createAbstractBook } }) {
       const { getAbstractBooks: abstractBooks } = proxy.readQuery({
         query: GET_ABSTRACT_BOOKS,
+        variables: { searchQuery },
       });
 
       proxy.writeQuery({
         query: GET_ABSTRACT_BOOKS,
+        variables: { searchQuery },
         data: {
           getAbstractBooks: [...abstractBooks, createAbstractBook],
         },

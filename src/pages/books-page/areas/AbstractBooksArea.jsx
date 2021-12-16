@@ -18,9 +18,15 @@ function AbstractBooksArea({ searchQuery }) {
   const { loading, error, data } = useQuery(GET_ABSTRACT_BOOKS, { variables: { searchQuery } });
 
   const { showModal: showCreateBookModal } = useModal({
-    ModalContent: AbstractBookModal,
-    inputs: [],
+    ModalContent: () => <AbstractBookModal searchQuery={searchQuery} />,
+    inputs: [searchQuery],
     title: 'Добавить книгу',
+  });
+
+  const { showModal: showEditBookModal } = useModal({
+    ModalContent: (props) => <AbstractBookModal {...props} searchQuery={searchQuery} />,
+    inputs: [searchQuery],
+    title: 'Редактировать книгу',
   });
 
   const deleteAbstractBookMutation = useAbstractBookDelete(searchQuery);
@@ -63,7 +69,7 @@ function AbstractBooksArea({ searchQuery }) {
             </span>
 
             <span className="space-x-2">
-              <EditButton />
+              <EditButton onClick={() => showEditBookModal({ editedBook: book })} />
 
               <TrashButton onClick={() => deleteAbstractBookHandler(book.id)} />
             </span>
