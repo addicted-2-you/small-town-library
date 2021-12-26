@@ -7,7 +7,7 @@ import { DELETE_ABSTRACT_BOOK } from '~/graphql-client/mutations/abstract-books.
 export function useAbstractBookDelete(searchQuery) {
   const [deleteAbstractBookMutation] = useMutation(DELETE_ABSTRACT_BOOK, {
     update(proxy, { data: { deleteAbstractBook } }) {
-      const { getAbstractBooks: abstractBooks } = proxy.readQuery({
+      const { abstractBooks } = proxy.readQuery({
         query: GET_ABSTRACT_BOOKS,
         variables: { searchQuery },
       });
@@ -16,7 +16,7 @@ export function useAbstractBookDelete(searchQuery) {
         query: GET_ABSTRACT_BOOKS,
         variables: { searchQuery },
         data: {
-          getAbstractBooks: abstractBooks.filter(
+          abstractBooks: abstractBooks.filter(
             (abstractBook) => abstractBook.id !== deleteAbstractBook.id,
           ),
         },

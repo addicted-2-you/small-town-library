@@ -25,8 +25,8 @@ function AuthorPage() {
   const { loading, error, data } = useQuery(GET_AUTHOR, { variables: { id: authorId } });
 
   const {
-    getAuthors: [authorData],
-  } = data || { getAuthors: [null] };
+    authors: [authorData],
+  } = data || { authors: [null] };
 
   const deleteAuthorMutation = useAuthorDelete();
 
@@ -86,7 +86,7 @@ function AuthorPage() {
         authorData.patronum || ''
       }`}</h1>
 
-      {authorData.books.length ? (
+      {/* {authorData.books.length ? (
         <>
           <h2 className="pl-4 font-semibold">Книги автора</h2>
 
@@ -105,7 +105,7 @@ function AuthorPage() {
         </>
       ) : (
         <h2 className="pl-4 font-semibold">У автора нет книг :/</h2>
-      )}
+      )} */}
     </>
   );
 }

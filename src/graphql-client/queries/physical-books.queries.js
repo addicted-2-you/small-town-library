@@ -12,7 +12,7 @@ export const GET_PHYSICAL_BOOKS = gql`
 
 export const GET_GROUPED_PHYSICAL_BOOKS = gql`
   query GetGroupedPhysicalBooks($searchQuery: String) {
-    getGroupedPhysicalBooks(searchQuery: $searchQuery) {
+    groupedPhysicalBooks(searchQuery: $searchQuery) {
       id
       name
       count
@@ -23,7 +23,7 @@ export const GET_GROUPED_PHYSICAL_BOOKS = gql`
 
 export const GET_PHYSICAL_BOOKS_GROUP_LIST = gql`
   query GetPhysicalBooksGroupList($name: String, $publishingDate: String) {
-    getPhysicalBooksGroupList(name: $name, publishingDate: $publishingDate) {
+    physicalBooksGroupList(name: $name, publishingDate: $publishingDate) {
       id
       name
       publishingDate

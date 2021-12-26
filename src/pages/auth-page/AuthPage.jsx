@@ -1,8 +1,7 @@
-import { useMutation } from '@apollo/client';
-
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@apollo/client';
 
 import { AUTHORIZE } from '~/graphql-client/mutations/user.mutations';
 

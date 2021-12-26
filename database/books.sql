@@ -9,6 +9,7 @@ create table small_town_library.authors_tbl (
 insert into small_town_library.authors_tbl(a_id, a_name, a_patronum, a_surname) values(1, 'Фёдор', 'Михайлович', 'Достоевский');
 insert into small_town_library.authors_tbl(a_id, a_name, a_patronum, a_surname) values(2, 'Лев', 'Николаевич', 'Толстой');
 insert into small_town_library.authors_tbl(a_id, a_name, a_patronum, a_surname) values(3, 'Антон', 'Павлович', 'Чехов');
+insert into small_town_library.authors_tbl(a_id, a_name, a_patronum, a_surname) values(5, 'Howard', 'Lovecraft', '');
 
 drop table if exists small_town_library.abstract_books_tbl;
 create table small_town_library.abstract_books_tbl (

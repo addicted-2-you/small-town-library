@@ -13,11 +13,11 @@ import chevronLeftSolid from '~/icons/chevron-left-solid.svg';
 function AbstractBookPage() {
   const { bookId } = useParams();
 
-  const { loading, error, data } = useQuery(GET_ABSTRACT_BOOK, { variables: { bookId } });
+  const { loading, error, data } = useQuery(GET_ABSTRACT_BOOK, { variables: { id: bookId } });
 
   const {
-    getAbstractBooks: [abstractBook],
-  } = data || { getAbstractBooks: [null] };
+    abstractBooks: [abstractBook],
+  } = data || { abstractBooks: [null] };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -58,7 +58,7 @@ function AbstractBookPage() {
 
       <h1 className="pl-4 text-lg font-bold">{abstractBook.name}</h1>
 
-      {abstractBook.authors.length ? (
+      {/* {abstractBook.authors.length ? (
         <>
           <h2 className="pl-4 font-semibold">Авторы</h2>
 
@@ -75,7 +75,7 @@ function AbstractBookPage() {
         </>
       ) : (
         <h2 className="pl-4 font-semibold">У этой книги пока не выбраны авторы :/</h2>
-      )}
+      )} */}
     </>
   );
 }
