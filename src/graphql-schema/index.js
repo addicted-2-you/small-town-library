@@ -1,3 +1,5 @@
+// TODO: delete this file
+
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
 // queries
@@ -24,7 +26,7 @@ export const query = new GraphQLObjectType({
 
   fields: {
     // abstract books
-    getAbstractBooks: GET_ABSTRACT_BOOKS,
+    abstractBooks: GET_ABSTRACT_BOOKS,
 
     // authors
     getAuthors: GET_AUTHORS,

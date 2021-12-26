@@ -10,12 +10,12 @@ import {
 export function usePhysicalBookDelete({ name, publishingDate, searchQuery }) {
   const [deletePhysicalBookMutation] = useMutation(DELETE_PHYSICAL_BOOK, {
     update(cache, { data: { deletePhysicalBook } }) {
-      const { getPhysicalBooksGroupList: physicalBooksGroupList } = cache.readQuery({
+      const { physicalBooksGroupList } = cache.readQuery({
         query: GET_PHYSICAL_BOOKS_GROUP_LIST,
         variables: { name, publishingDate },
       });
 
-      const { getGroupedPhysicalBooks: groupedPhysicalBooks } = cache.readQuery({
+      const { groupedPhysicalBooks } = cache.readQuery({
         query: GET_GROUPED_PHYSICAL_BOOKS,
         variables: { searchQuery },
       });
@@ -24,7 +24,7 @@ export function usePhysicalBookDelete({ name, publishingDate, searchQuery }) {
         query: GET_PHYSICAL_BOOKS_GROUP_LIST,
         variables: { name, publishingDate },
         data: {
-          getPhysicalBooksGroupList: physicalBooksGroupList.filter(
+          physicalBooksGroupList: physicalBooksGroupList.filter(
             (item) => item.id !== deletePhysicalBook.id,
           ),
         },
@@ -34,7 +34,7 @@ export function usePhysicalBookDelete({ name, publishingDate, searchQuery }) {
         query: GET_GROUPED_PHYSICAL_BOOKS,
         variables: { searchQuery },
         data: {
-          getGroupedPhysicalBooks: groupedPhysicalBooks
+          groupedPhysicalBooks: groupedPhysicalBooks
             .map((item) =>
               item.name === name && item.publishingDate === publishingDate
                 ? { ...item, count: item.count - 1 }

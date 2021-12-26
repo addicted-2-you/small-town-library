@@ -7,7 +7,7 @@ import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.quer
 export function useAbstractBookCreate(searchQuery) {
   const [createAbstractBookMutation] = useMutation(CREATE_ABSTRACT_BOOK, {
     update(proxy, { data: { createAbstractBook } }) {
-      const { getAbstractBooks: abstractBooks } = proxy.readQuery({
+      const { abstractBooks } = proxy.readQuery({
         query: GET_ABSTRACT_BOOKS,
         variables: { searchQuery },
       });
@@ -16,7 +16,7 @@ export function useAbstractBookCreate(searchQuery) {
         query: GET_ABSTRACT_BOOKS,
         variables: { searchQuery },
         data: {
-          getAbstractBooks: [...abstractBooks, createAbstractBook],
+          abstractBooks: [...abstractBooks, createAbstractBook],
         },
       });
     },

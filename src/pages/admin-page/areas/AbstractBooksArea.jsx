@@ -22,7 +22,7 @@ function AbstractBooksArea() {
     return <p>Error {JSON.stringify(error)}</p>;
   }
 
-  const { getAbstractBooks: abstractBooksData } = data;
+  const { abstractBooks: abstractBooksData } = data;
 
   const { url } = useRouteMatch();
 

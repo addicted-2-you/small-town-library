@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const GET_ABSTRACT_BOOKS = gql`
   query GetAbstractBooks($searchQuery: String) {
-    getAbstractBooks(searchQuery: $searchQuery) {
+    abstractBooks(searchQuery: $searchQuery) {
       id
       name
     }
@@ -10,16 +10,10 @@ export const GET_ABSTRACT_BOOKS = gql`
 `;
 
 export const GET_ABSTRACT_BOOK = gql`
-  query GetAbstractBook($bookId: String) {
-    getAbstractBooks(bookId: $bookId) {
+  query GetAbstractBook($id: String) {
+    abstractBooks(id: $id) {
       id
       name
-      authors {
-        id
-        name
-        surname
-        patronum
-      }
     }
   }
 `;

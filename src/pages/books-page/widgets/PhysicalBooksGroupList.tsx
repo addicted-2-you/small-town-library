@@ -35,7 +35,7 @@ function PhysicalBooksGroupList(props: IPhysicalBooksGroupListProps) {
     deletePhysicalBookMutation({ variables: { bookId } });
   }
 
-  const physicalBooks: IPhysicalBook[] = data.getPhysicalBooksGroupList;
+  const physicalBooks: IPhysicalBook[] = data.physicalBooksGroupList;
 
   return (
     <div className="py-1 px-2 mt-5 bg-gray-300 bg-opacity-10">

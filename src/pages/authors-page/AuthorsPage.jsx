@@ -46,7 +46,7 @@ function AuthorsPage() {
     return <p>Error {JSON.stringify(error)}</p>;
   }
 
-  const { getAuthors: authors } = data;
+  const { authors } = data;
 
   return (
     <>

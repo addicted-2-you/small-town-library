@@ -5,6 +5,8 @@
     "baseUrl": ".",
     "module": "commonjs",
     "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "~/*": ["src/*"]
     }

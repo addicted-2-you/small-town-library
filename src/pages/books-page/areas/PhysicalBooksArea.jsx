@@ -32,7 +32,7 @@ function PhysicalBooksArea({ searchQuery }) {
     return <p>Error {JSON.stringify(error)}</p>;
   }
 
-  const physicalBooks = data.getGroupedPhysicalBooks;
+  const physicalBooks = data.groupedPhysicalBooks;
 
   return (
     <div className="px-3 py-2">

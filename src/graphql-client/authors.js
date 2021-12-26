@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const GET_AUTHORS = gql`
   query GetAuthors {
-    getAuthors {
+    authors {
       id
       name
       patronum
@@ -12,16 +12,12 @@ export const GET_AUTHORS = gql`
 `;
 
 export const GET_AUTHOR = gql`
-  query GetAuthors($id: String!) {
-    getAuthors(id: $id) {
+  query GetAuthors($id: String) {
+    authors(id: $id) {
       id
       name
       patronum
       surname
-      books {
-        id
-        name
-      }
     }
   }
 `;

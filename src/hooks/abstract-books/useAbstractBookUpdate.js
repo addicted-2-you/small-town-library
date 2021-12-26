@@ -7,7 +7,7 @@ import { GET_ABSTRACT_BOOKS } from '~/graphql-client/queries/abstract-books.quer
 export function useAbstractBookUpdate(searchQuery) {
   const [udpateAbstractBookMutation] = useMutation(UPDATE_ABSTRACT_BOOK, {
     update(proxy, { data: { updateAbstractBook } }) {
-      const { getAbstractBooks: abstractBooks } = proxy.readQuery({
+      const { abstractBooks } = proxy.readQuery({
         query: GET_ABSTRACT_BOOKS,
         variables: { searchQuery },
       });
@@ -16,7 +16,7 @@ export function useAbstractBookUpdate(searchQuery) {
         query: GET_ABSTRACT_BOOKS,
         variables: { searchQuery },
         data: {
-          getAbstractBooks: abstractBooks.map((abstractBook) =>
+          abstractBooks: abstractBooks.map((abstractBook) =>
             abstractBook.id === updateAbstractBook.id
               ? { ...abstractBook, ...updateAbstractBook }
               : abstractBook,

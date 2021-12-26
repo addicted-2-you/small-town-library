@@ -43,7 +43,7 @@ function AbstractBooksArea({ searchQuery }) {
     return <p>Error {JSON.stringify(error)}</p>;
   }
 
-  const { getAbstractBooks: abstractBooks } = data;
+  const { abstractBooks } = data;
 
   return (
     <div className="px-3 py-2">
